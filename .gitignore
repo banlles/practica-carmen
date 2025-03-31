@@ -49,6 +49,9 @@ cmake-build-*/
 *.tiff
 *.svg
 *.webp
+# Incluir la carpeta pero ignorar su contenido
+.src/main/resources/
+.src/main/resources/
 
 # Archivos específicos de Android Studio y Crashlytics
 com_crashlytics_export_strings.xml
