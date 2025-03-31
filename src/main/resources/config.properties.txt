@@ -1,1 +1,0 @@
-db.string_connection=jdbc:mysql://localhost/hotel?user=root&password=12345aA
