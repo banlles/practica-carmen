@@ -15,7 +15,10 @@ target/
 
 # Ignorar archivos de configuración sensibles
 
-src/main/resources/config.properties.txt
+# Incluir la carpeta pero ignorar su contenido
+!src/main/resources/
+src/main/resources/*
+
 
 # Archivos específicos de usuario
 *.iws
