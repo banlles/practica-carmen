@@ -8,8 +8,8 @@ public class Hotel {
     public Hotel() {
     	
     }
-    
-    public Hotel(int habitaciones, String name, String location) {
+
+	public Hotel(int habitaciones, String name, String location) {
         this.habitaciones = habitaciones;
         this.name = name;
         this.location = location;
@@ -38,5 +38,10 @@ public class Hotel {
     public void setLocation(String location) {
         this.location = location;
     }
+    
+    @Override
+	public String toString() {
+		return "Hotel [habitaciones=" + habitaciones + ", name=" + name + ", location=" + location + "]";
+	}
 }
 
