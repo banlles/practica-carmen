@@ -19,7 +19,13 @@ public class BBDD {
     public static PreparedStatement updateEmpleados;
     public static PreparedStatement deleteEmpleados;
     
-    
+    public static PreparedStatement selectReservas;
+
+	public static PreparedStatement insertReservas;
+
+	public static PreparedStatement updateReservas;
+
+	public static PreparedStatement deleteReservas;
     
     public static PreparedStatement selectHotel;
     public static PreparedStatement insertHotel;
@@ -42,6 +48,19 @@ public class BBDD {
             updateEmpleados = conn.prepareStatement("UPDATE empleados SET nombre = ?, puesto = ?, salario = ? WHERE empleado_id = ?");
 			deleteEmpleados = conn.prepareStatement("DELETE FROM empleados WHERE nombre = ?");
 			
+			selectReservas = conn.prepareStatement(
+
+					"SELECT reserva_id, nombre_huesped, fecha_entrada, fecha_salida, numero_habitacion FROM reservas WHERE reserva_id = ? AND nombre_huesped = ? AND fecha_entrada = ? ");
+
+			insertReservas = conn.prepareStatement(
+
+					"INSERT INTO reservas (nombre_huesped, fecha_entrada, fecha_salida, numero_habitacion) VALUES (?, ?, ?, ?");
+
+			updateReservas = conn.prepareStatement(
+
+					"UPDATE reservas SET nombre_huesped = ?, fecha_entrada = ?, fecha_salida = ?, numero_habitacion = ? WHERE reserva_id = ?");
+
+			deleteReservas = conn.prepareStatement("DELETE FROM reservas WHERE nombre_huesped = ?");
 			
 			selectHotel = conn.prepareStatement(
                     "SELECT habitaciones, name, location FROM hotel WHERE habitaciones = ? AND name = ?");
@@ -148,6 +167,129 @@ public class BBDD {
 		}
     }
     
+    public static Reserva[] find(Reserva filtroBusqueda) {
+
+		ArrayList<Reserva> lista = new ArrayList<Reserva>();
+
+		try {
+
+			BBDD.selectReservas.setInt(1, filtroBusqueda.getReservaId());
+
+			BBDD.selectReservas.setString(2, filtroBusqueda.getNombreHuesped());
+
+			BBDD.selectReservas.setDate(3, filtroBusqueda.getFechaEntrada());
+
+			BBDD.selectReservas.setDate(4, filtroBusqueda.getFechaSalida());
+
+
+
+			ResultSet rs = BBDD.selectReservas.executeQuery();
+
+			while (rs.next()) {
+
+				Reserva reserva = new Reserva();
+
+				reserva.setReservaId(rs.getInt("reserva_id"));
+
+				reserva.setNombreHuesped(rs.getString("nombre_huesped"));
+
+				reserva.setFechaEntrada(rs.getDate("fecha_entrada"));
+
+				reserva.setFechaSalida(rs.getDate("fecha_salida"));
+
+				reserva.setNumeroHabitacion(rs.getInt("numero_habitacion"));
+
+				lista.add(reserva);
+
+			}
+
+		} catch (SQLException e) {
+
+			BBDD.showError(e);
+
+		}
+
+		return (Reserva[]) lista.toArray();
+
+	}
+
+
+
+	public static boolean Persist(Reserva usuarioInsertar) {
+
+		try {
+
+			BBDD.insertReservas.setString(1, usuarioInsertar.getNombreHuesped());
+
+			BBDD.insertReservas.setDate(2, usuarioInsertar.getFechaEntrada());
+
+			BBDD.insertReservas.setDate(3, usuarioInsertar.getFechaSalida());
+
+			BBDD.insertReservas.setInt(4, usuarioInsertar.getNumeroHabitacion());
+
+			BBDD.insertReservas.executeUpdate();
+
+			return true;
+
+		} catch (SQLException e) {
+
+			BBDD.showError(e);
+
+			return false;
+
+		}
+
+	}
+
+
+
+	public static boolean Merge(Reserva usuarioEditar) {
+
+		try {
+
+			BBDD.updateReservas.setString(1, usuarioEditar.getNombreHuesped());
+
+			BBDD.updateReservas.setDate(2, usuarioEditar.getFechaEntrada());
+
+			BBDD.updateReservas.setDate(3, usuarioEditar.getFechaSalida());
+
+			BBDD.insertReservas.setInt(4, usuarioEditar.getReservaId());
+
+			BBDD.updateReservas.executeUpdate();
+
+			return true;
+
+		} catch (SQLException e) {
+
+			BBDD.showError(e);
+
+			return false;
+
+		}
+
+	}
+
+
+
+	public static boolean Remove(Reserva usuarioEliminar) {
+
+		try {
+
+			BBDD.deleteReservas.setString(1, usuarioEliminar.getNombreHuesped());
+
+			BBDD.deleteReservas.executeUpdate();
+
+			return true;
+
+		} catch (SQLException e) {
+
+			BBDD.showError(e);
+
+			return false;
+
+		}
+
+	}
     
     public static Hotel[] find(Hotel filtroBusqueda) {
         ArrayList<Hotel> lista = new ArrayList<Hotel>();
