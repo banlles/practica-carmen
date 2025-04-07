@@ -15,6 +15,11 @@ public class BBDD {
     private Connection conn;
     
     public static PreparedStatement selectEmpleados;
+    public static PreparedStatement insertEmpleados;
+    public static PreparedStatement updateEmpleados;
+    public static PreparedStatement deleteEmpleados;
+
+
 
     public boolean init() {
         try {
@@ -26,7 +31,10 @@ public class BBDD {
             System.out.println(strConn);
             conn = DriverManager.getConnection(strConn);
             selectEmpleados = conn.prepareStatement("SELECT empleado_id, nombre, puesto, salario FROM empleados WHERE empleado_id = ? AND nombre = ? AND puesto = ? ");
-            
+            insertEmpleados = conn.prepareStatement("INSERT INTO empleados (nombre, puesto, salario) VALUES (?, ?, ?");
+            updateEmpleados = conn.prepareStatement("UPDATE empleados SET nombre = ?, puesto = ?, salario = ? WHERE empleado_id = ?");
+			deleteEmpleados = conn.prepareStatement("DELETE FROM empleados WHERE nombre = ?");
+
             return true;
         } catch (SQLException e) {
             showError(e);
@@ -61,13 +69,6 @@ public class BBDD {
         return p;
     }
 
-    /**
-     * Retorna aquellos jobs que coinciden con los criterios de búsqueda
-     * @param job Contiene los criterios de búsqueda
-     * @return Retorna un array con todos los jobs encontrados.
-     * Null, no hay hay resultados. Siempre hay 20 casillas,
-     * cuando llegamos a la primera casilla null, ya no hay más resultados.
-     */
     public static Empleado[] find(Empleado filtroBusqueda) {
         ArrayList<Empleado> lista = new ArrayList<Empleado>();
         try {
@@ -88,42 +89,47 @@ public class BBDD {
         } catch (SQLException e) {
         	BBDD.showError(e);
 		}
-        
-
         return (Empleado[])lista.toArray();
     }
 
-    private static Connection getConnection() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	/**
-     * Inserta los datos del Job que se pasa como parámetro
-     * @param job Job a insertar
-     * @return True si la operación ha ido bien. False, en caso contrario.
-     */
-    public static boolean Persist(Job job) {
-        return false;
+    public static boolean Persist(Empleado usuarioInsertar) {
+    	try {
+        	BBDD.insertEmpleados.setString(1, usuarioInsertar.getNombre());
+        	BBDD.insertEmpleados.setString(2, usuarioInsertar.getPuesto());
+        	BBDD.insertEmpleados.setDouble(3, usuarioInsertar.getSalario());
+        	BBDD.insertEmpleados.executeUpdate();
+        	return true;
+        } catch (SQLException e) {
+        	BBDD.showError(e);
+    		return false;
+		}
     }
 
-    /**
-     * Actualiza los datos del Job que se pasa como parámetro.
-     * Para simplificar, actualizaremos todo excepto lo que corresponde con la PK
-     * @param job Job a actualizar
-     * @return True si la operación ha ido bien. False, en caso contrario.
-     */
-    public static boolean Merge(Job job) {
-        return false;
+  
+    public static boolean Merge(Empleado usuarioEditar) {
+    	try {
+        	BBDD.updateEmpleados.setString(1, usuarioEditar.getNombre());
+        	BBDD.updateEmpleados.setString(2, usuarioEditar.getPuesto());
+        	BBDD.updateEmpleados.setDouble(3, usuarioEditar.getSalario());
+        	BBDD.insertEmpleados.setDouble(4, usuarioEditar.getEmpleadoId());
+        	BBDD.updateEmpleados.executeUpdate();
+        	return true;
+        } catch (SQLException e) {
+        	BBDD.showError(e);
+    		return false;
+		}
     }
 
-    /**
-     * Elimina el Job que se pasa como parámetro.
-     * Para simplificar, se elimina a partir de la PK
-     * @param job Job a eliminar
-     * @return True si la operación ha ido bien. False, en caso contrario.
-     */
-    public static boolean Remove(Job job) {
-        return false;
+   
+    public static boolean Remove(Empleado usuarioEliminar) {
+    	try {
+        	BBDD.deleteEmpleados.setString(1, usuarioEliminar.getNombre());
+        	BBDD.deleteEmpleados.executeUpdate();
+        	return true;
+        } catch (SQLException e) {
+        	BBDD.showError(e);
+    		return false;
+		}
     }
 }
