@@ -40,17 +40,17 @@ public class BBDD {
 			System.out.println(strConn);
 			conn = DriverManager.getConnection(strConn);
 			selectEmpleados = conn.prepareStatement("SELECT empleado_id, nombre, puesto, salario FROM empleados WHERE empleado_id = ? AND nombre = ? AND puesto = ? ");
-			insertEmpleados = conn.prepareStatement("INSERT INTO empleados (nombre, puesto, salario) VALUES (?, ?, ?");
+			insertEmpleados = conn.prepareStatement("INSERT INTO empleados (nombre, puesto, salario) VALUES (?, ?, ?)");
 			updateEmpleados = conn.prepareStatement("UPDATE empleados SET nombre = ?, puesto = ?, salario = ? WHERE empleado_id = ?");
 			deleteEmpleados = conn.prepareStatement("DELETE FROM empleados WHERE nombre = ?");
 
 			selectReservas = conn.prepareStatement("SELECT reserva_id, nombre_huesped, fecha_entrada, fecha_salida, numero_habitacion FROM reservas WHERE reserva_id = ? AND nombre_huesped = ? AND fecha_entrada = ? ");
-			insertReservas = conn.prepareStatement("INSERT INTO reservas (nombre_huesped, fecha_entrada, fecha_salida, numero_habitacion) VALUES (?, ?, ?, ?");
+			insertReservas = conn.prepareStatement("INSERT INTO reservas (nombre_huesped, fecha_entrada, fecha_salida, numero_habitacion) VALUES (?, ?, ?, ?)");
 			updateReservas = conn.prepareStatement("UPDATE reservas SET nombre_huesped = ?, fecha_entrada = ?, fecha_salida = ?, numero_habitacion = ? WHERE reserva_id = ?");
 			deleteReservas = conn.prepareStatement("DELETE FROM reservas WHERE nombre_huesped = ?");
 
 			selectHotel = conn.prepareStatement("SELECT habitaciones, name, location FROM hotel WHERE habitaciones = ? AND name = ?");
-			insertHotel = conn.prepareStatement("INSERT INTO hotel (habitaciones, name, location) VALUES (?, ?, ?");
+			insertHotel = conn.prepareStatement("INSERT INTO hotel (habitaciones, name, location) VALUES (?, ?, ?)");
 			updateHotel = conn.prepareStatement("UPDATE hotel SET habitaciones = ?, name = ?, location = ? WHERE name = ?");
 			deleteHotel = conn.prepareStatement("DELETE FROM hotel WHERE name = ?");
 
@@ -95,9 +95,8 @@ public class BBDD {
 			BBDD.selectEmpleados.setInt(1, filtroBusqueda.getEmpleadoId());
 			BBDD.selectEmpleados.setString(2, filtroBusqueda.getNombre());
 			BBDD.selectEmpleados.setString(3, filtroBusqueda.getPuesto());
-			BBDD.selectEmpleados.setDouble(4, filtroBusqueda.getSalario());
-
 			ResultSet rs = BBDD.selectEmpleados.executeQuery();
+			
 			while (rs.next()) {
 				Empleado empleado = new Empleado();
 				empleado.setEmpleadoId(rs.getInt("empleado_id"));
@@ -109,7 +108,7 @@ public class BBDD {
 		} catch (SQLException e) {
 			BBDD.showError(e);
 		}
-		return (Empleado[]) lista.toArray();
+        return lista.toArray(new Empleado[lista.size()]);
 	}
 
 	public static boolean Persist(Empleado usuarioInsertar) {
@@ -130,7 +129,7 @@ public class BBDD {
 			BBDD.updateEmpleados.setString(1, usuarioEditar.getNombre());
 			BBDD.updateEmpleados.setString(2, usuarioEditar.getPuesto());
 			BBDD.updateEmpleados.setDouble(3, usuarioEditar.getSalario());
-			BBDD.insertEmpleados.setDouble(4, usuarioEditar.getEmpleadoId());
+			BBDD.updateEmpleados.setDouble(4, usuarioEditar.getEmpleadoId());
 			BBDD.updateEmpleados.executeUpdate();
 			return true;
 		} catch (SQLException e) {
@@ -156,7 +155,6 @@ public class BBDD {
 			BBDD.selectReservas.setInt(1, filtroBusqueda.getReservaId());
 			BBDD.selectReservas.setString(2, filtroBusqueda.getNombreHuesped());
 			BBDD.selectReservas.setString(3, filtroBusqueda.getFechaEntrada());
-			BBDD.selectReservas.setString(4, filtroBusqueda.getFechaSalida());
 			ResultSet rs = BBDD.selectReservas.executeQuery();
 
 			while (rs.next()) {
@@ -171,7 +169,7 @@ public class BBDD {
 		} catch (SQLException e) {
 			BBDD.showError(e);
 		}
-		return (Reserva[]) lista.toArray();
+        return lista.toArray(new Reserva[lista.size()]);
 	}
 
 	public static boolean Persist(Reserva usuarioInsertar) {
@@ -194,7 +192,7 @@ public class BBDD {
 			BBDD.updateReservas.setString(1, usuarioEditar.getNombreHuesped());
 			BBDD.updateReservas.setString(2, usuarioEditar.getFechaEntrada());
 			BBDD.updateReservas.setString(3, usuarioEditar.getFechaSalida());
-			BBDD.insertReservas.setInt(4, usuarioEditar.getReservaId());
+			BBDD.updateReservas.setInt(4, usuarioEditar.getReservaId());
 			BBDD.updateReservas.executeUpdate();
 			return true;
 
@@ -221,9 +219,8 @@ public class BBDD {
 		try {
 			BBDD.selectHotel.setInt(1, filtroBusqueda.getHabitaciones());
 			BBDD.selectHotel.setString(2, filtroBusqueda.getName());
-			BBDD.selectHotel.setString(3, filtroBusqueda.getLocation());
-
 			ResultSet rs = BBDD.selectHotel.executeQuery();
+			
 			while (rs.next()) {
 				Hotel hotel = new Hotel();
 				hotel.setHabitaciones(rs.getInt("habitaciones"));
@@ -234,7 +231,7 @@ public class BBDD {
 		} catch (SQLException e) {
 			BBDD.showError(e);
 		}
-		return (Hotel[]) lista.toArray();
+        return lista.toArray(new Hotel[lista.size()]);
 	}
 
 	public static boolean Persist(Hotel usuarioInsertar) {
@@ -255,7 +252,7 @@ public class BBDD {
 			BBDD.updateHotel.setInt(1, usuarioEditar.getHabitaciones());
 			BBDD.updateHotel.setString(2, usuarioEditar.getName());
 			BBDD.updateHotel.setString(3, usuarioEditar.getLocation());
-			BBDD.insertHotel.setString(4, usuarioEditar.getName());
+			BBDD.updateHotel.setString(4, usuarioEditar.getName());
 			BBDD.updateHotel.executeUpdate();
 			return true;
 		} catch (SQLException e) {
