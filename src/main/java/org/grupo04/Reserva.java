@@ -6,14 +6,14 @@ public class Reserva {
 
 	private int reservaId;
     private String nombreHuesped;
-    private Date fechaEntrada;
-    private Date fechaSalida;
+    private String fechaEntrada;
+    private String fechaSalida;
     private int numeroHabitacion;
 
     public Reserva() {
     }
 
-    public Reserva(int reservaId, String nombreHuesped, Date fechaEntrada, Date fechaSalida, int numeroHabitacion) {
+    public Reserva(int reservaId, String nombreHuesped, String fechaEntrada, String fechaSalida, int numeroHabitacion) {
         this.reservaId = reservaId;
         this.nombreHuesped = nombreHuesped;
         this.fechaEntrada = fechaEntrada;
@@ -37,19 +37,19 @@ public class Reserva {
         this.nombreHuesped = nombreHuesped;
     }
 
-    public Date getFechaEntrada() {
+    public String getFechaEntrada() {
         return fechaEntrada;
     }
 
-    public void setFechaEntrada(Date fechaEntrada) {
+    public void setFechaEntrada(String fechaEntrada) {
         this.fechaEntrada = fechaEntrada;
     }
 
-    public Date getFechaSalida() {
+    public String getFechaSalida() {
         return fechaSalida;
     }
 
-    public void setFechaSalida(Date fechaSalida) {
+    public void setFechaSalida(String fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 
