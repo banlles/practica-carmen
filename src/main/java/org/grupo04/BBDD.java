@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import LosAnillosDePoder.BD;
-
 import java.io.InputStream;
 import java.io.IOException;
 
@@ -27,9 +25,6 @@ public class BBDD {
             String strConn = (String) p.get("db.string_connection");
             System.out.println(strConn);
             conn = DriverManager.getConnection(strConn);
-            PreparedStatement pstmt = null;
-            ResultSet rs = null;
-            
             selectEmpleados = conn.prepareStatement("SELECT empleado_id, nombre, puesto, salario FROM empleados WHERE empleado_id = ? AND nombre = ? AND puesto = ? ");
             
             return true;
@@ -99,11 +94,6 @@ public class BBDD {
     }
 
     private static Connection getConnection() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private static Connection getConnection() {
 		// TODO Auto-generated method stub
 		return null;
 	}
