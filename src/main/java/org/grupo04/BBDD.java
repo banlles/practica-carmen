@@ -18,6 +18,13 @@ public class BBDD {
     public static PreparedStatement insertEmpleados;
     public static PreparedStatement updateEmpleados;
     public static PreparedStatement deleteEmpleados;
+    
+    
+    
+    public static PreparedStatement selectHotel;
+    public static PreparedStatement insertHotel;
+    public static PreparedStatement updateHotel;
+    public static PreparedStatement deleteHotel;
 
 
 
@@ -34,6 +41,14 @@ public class BBDD {
             insertEmpleados = conn.prepareStatement("INSERT INTO empleados (nombre, puesto, salario) VALUES (?, ?, ?");
             updateEmpleados = conn.prepareStatement("UPDATE empleados SET nombre = ?, puesto = ?, salario = ? WHERE empleado_id = ?");
 			deleteEmpleados = conn.prepareStatement("DELETE FROM empleados WHERE nombre = ?");
+			
+			
+			selectHotel = conn.prepareStatement(
+                    "SELECT habitaciones, name, location FROM hotel WHERE habitaciones = ? AND name = ?");
+            insertHotel = conn.prepareStatement("INSERT INTO hotel (habitaciones, name, location) VALUES (?, ?, ?");
+            updateHotel = conn
+                    .prepareStatement("UPDATE hotel SET habitaciones = ?, name = ?, location = ? WHERE name = ?");
+            deleteHotel = conn.prepareStatement("DELETE FROM hotel WHERE name = ?");
 
             return true;
         } catch (SQLException e) {
@@ -131,5 +146,65 @@ public class BBDD {
         	BBDD.showError(e);
     		return false;
 		}
+    }
+    
+    
+    public static Hotel[] find(Hotel filtroBusqueda) {
+        ArrayList<Hotel> lista = new ArrayList<Hotel>();
+        try {
+            BBDD.selectHotel.setInt(1, filtroBusqueda.getHabitaciones());
+            BBDD.selectHotel.setString(2, filtroBusqueda.getName());
+            BBDD.selectHotel.setString(3, filtroBusqueda.getLocation());
+
+            ResultSet rs = BBDD.selectHotel.executeQuery();
+            while (rs.next()) {
+                Hotel hotel = new Hotel();
+                hotel.setHabitaciones(rs.getInt("habitaciones"));
+                hotel.setName(rs.getString("name"));
+                hotel.setLocation(rs.getString("location"));
+                lista.add(hotel);
+            }
+        } catch (SQLException e) {
+            BBDD.showError(e);
+        }
+        return (Hotel[]) lista.toArray();
+    }
+
+    public static boolean Persist(Hotel usuarioInsertar) {
+        try {
+            BBDD.insertHotel.setInt(1, usuarioInsertar.getHabitaciones());
+            BBDD.insertHotel.setString(2, usuarioInsertar.getName());
+            BBDD.insertHotel.setString(3, usuarioInsertar.getLocation());
+            BBDD.insertHotel.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            BBDD.showError(e);
+            return false;
+        }
+    }
+
+    public static boolean Merge(Hotel usuarioEditar) {
+        try {
+            BBDD.updateHotel.setInt(1, usuarioEditar.getHabitaciones());
+            BBDD.updateHotel.setString(2, usuarioEditar.getName());
+            BBDD.updateHotel.setString(3, usuarioEditar.getLocation());
+            BBDD.insertHotel.setString(4, usuarioEditar.getName());
+            BBDD.updateHotel.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            BBDD.showError(e);
+            return false;
+        }
+    }
+
+    public static boolean Remove(Hotel usuarioEliminar) {
+        try {
+            BBDD.deleteHotel.setString(1, usuarioEliminar.getName());
+            BBDD.deleteHotel.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            BBDD.showError(e);
+            return false;
+        }
     }
 }
