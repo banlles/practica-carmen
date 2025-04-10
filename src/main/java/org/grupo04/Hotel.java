@@ -39,6 +39,22 @@ public class Hotel {
         this.location = location;
     }
     
+    public Hotel[] find() {
+    	return BBDD.find(this);
+    }
+    
+    public boolean persist() {
+    	return BBDD.persist(this);
+    }
+    
+    public boolean merge () {
+    	return BBDD.merge(this);
+    }
+    
+    public boolean remove () {
+    	return BBDD.remove(this);
+    }
+    
     @Override
 	public String toString() {
 		return "Hotel [habitaciones=" + habitaciones + ", name=" + name + ", location=" + location + "]";
