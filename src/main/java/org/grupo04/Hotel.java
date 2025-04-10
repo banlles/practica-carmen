@@ -1,5 +1,7 @@
 package org.grupo04;
 
+import java.util.ArrayList;
+
 public class Hotel {
     private int habitaciones;
     private String name;
@@ -39,7 +41,7 @@ public class Hotel {
         this.location = location;
     }
     
-    public Hotel[] find() {
+    public ArrayList<Hotel> find() {
     	return BBDD.find(this);
     }
     

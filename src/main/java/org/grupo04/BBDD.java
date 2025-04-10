@@ -95,7 +95,7 @@ public class BBDD {
 		return p;
 	}
 
-	public static Empleado[] find(Empleado filtroBusqueda) {
+	public static ArrayList<Empleado> find(Empleado filtroBusqueda) {
 		ArrayList<Empleado> lista = new ArrayList<Empleado>();
 		try {
 			BBDD.selectEmpleados.setInt(1, filtroBusqueda.getEmpleadoId());
@@ -112,7 +112,9 @@ public class BBDD {
 		} catch (SQLException e) {
 			BBDD.showError(e);
 		}
-        return (Empleado[]) lista.toArray();
+        //return (Empleado[]) lista.toArray();
+		return lista;
+
 	}
 	
 	public static ArrayList<Empleado> selectEmpleado() {
@@ -172,7 +174,7 @@ public class BBDD {
 		}
 	}
 
-	public static Reserva[] find(Reserva filtroBusqueda) {
+	public static ArrayList<Reserva> find(Reserva filtroBusqueda) {
 		ArrayList<Reserva> lista = new ArrayList<Reserva>();
 		try {
 			BBDD.selectReservas.setInt(1, filtroBusqueda.getReservaId());
@@ -190,10 +192,10 @@ public class BBDD {
 		} catch (SQLException e) {
 			BBDD.showError(e);
 		}
-        return (Reserva[]) lista.toArray();
+        return lista;
 	}
 	
-	public static Reserva[] selectReserva() {
+	public static ArrayList<Reserva> selectReserva() {
 		ArrayList<Reserva> lista = new ArrayList<Reserva>();
 		try {
 			ResultSet rs = BBDD.selectReservasBase.executeQuery();
@@ -210,7 +212,7 @@ public class BBDD {
 		} catch (SQLException e) {
 			BBDD.showError(e);
 		}
-        return lista.toArray(new Reserva[lista.size()]);
+        return lista;
 	}
 	
 
@@ -235,7 +237,8 @@ public class BBDD {
 			BBDD.updateReservas.setString(1, usuarioEditar.getNombreHuesped());
 			BBDD.updateReservas.setString(2, usuarioEditar.getFechaEntrada());
 			BBDD.updateReservas.setString(3, usuarioEditar.getFechaSalida());
-			BBDD.updateReservas.setInt(4, usuarioEditar.getReservaId());
+			BBDD.updateReservas.setInt(4, usuarioEditar.getNumeroHabitacion());
+			BBDD.updateReservas.setInt(5, usuarioEditar.getReservaId());
 			BBDD.updateReservas.executeUpdate();
 			return true;
 
@@ -257,10 +260,10 @@ public class BBDD {
 		}
 	}
 
-	public static Hotel[] find(Hotel filtroBusqueda) {
+	public static ArrayList<Hotel> find(Hotel filtroBusqueda) {
 		ArrayList<Hotel> lista = new ArrayList<Hotel>();
 		try {
-			BBDD.selectHotel.setString(2, filtroBusqueda.getName());
+			BBDD.selectHotel.setString(1, filtroBusqueda.getName());
 			ResultSet rs = BBDD.selectHotel.executeQuery();
 			
 			while (rs.next()) {
@@ -273,10 +276,10 @@ public class BBDD {
 		} catch (SQLException e) {
 			BBDD.showError(e);
 		}
-        return (Hotel[]) lista.toArray();
+        return lista;
 	}
 	
-	public static Hotel[] selectHotel(Hotel filtroBusqueda) {
+	public static ArrayList<Hotel> selectHotel() {
 		ArrayList<Hotel> lista = new ArrayList<Hotel>();
 		try {
 			ResultSet rs = BBDD.selectHotelBase.executeQuery();
@@ -291,7 +294,7 @@ public class BBDD {
 		} catch (SQLException e) {
 			BBDD.showError(e);
 		}
-        return lista.toArray(new Hotel[lista.size()]);
+        return lista;
 	}
 
 	public static boolean persist(Hotel usuarioInsertar) {

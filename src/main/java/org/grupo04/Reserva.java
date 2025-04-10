@@ -1,5 +1,6 @@
 package org.grupo04;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Reserva {
@@ -61,7 +62,7 @@ public class Reserva {
         this.numeroHabitacion = numeroHabitacion;
     }
     
-    public Reserva[] find() {
+    public ArrayList<Reserva> find() {
     	return BBDD.find(this);
     }
     

@@ -1,5 +1,7 @@
 package org.grupo04;
 
+import java.util.ArrayList;
+
 public class Empleado {
     private int empleadoId;
     private String nombre;
@@ -48,7 +50,7 @@ public class Empleado {
         this.salario = salario;
     }
     
-    public Empleado[] find() {
+    public ArrayList<Empleado> find() {
     	return BBDD.find(this);
     }
     

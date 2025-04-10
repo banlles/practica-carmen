@@ -24,8 +24,8 @@ CREATE TABLE empleados (
 CREATE TABLE reservas (
   reserva_id INT NOT NULL AUTO_INCREMENT,
   nombre_huesped VARCHAR(255) NOT NULL,
-  fecha_entrada DATE NOT NULL,
-  fecha_salida DATE NOT NULL,
+  fecha_entrada VARCHAR(10) NOT NULL,
+  fecha_salida VARCHAR(10) NOT NULL,
   numero_habitacion INT NOT NULL,
   PRIMARY KEY (reserva_id)
 );
