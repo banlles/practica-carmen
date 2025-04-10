@@ -61,6 +61,22 @@ public class Reserva {
         this.numeroHabitacion = numeroHabitacion;
     }
     
+    public Reserva[] find() {
+    	return BBDD.find(this);
+    }
+    
+    public boolean persist() {
+    	return BBDD.persist(this);
+    }
+    
+    public boolean Merge () {
+    	return BBDD.merge(this);
+    }
+    
+    public boolean remove () {
+    	return BBDD.remove(this);
+    }
+    
     @Override
    	public String toString() {
    		return "Reserva [reservaId=" + reservaId + ", nombreHuesped=" + nombreHuesped + ", fechaEntrada=" + fechaEntrada

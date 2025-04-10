@@ -1,12 +1,164 @@
 package org.grupo04;
 
+import java.util.Scanner;
+
 public class Main {
-    public static void main(String[] args) {
-        BBDD bbdd = new BBDD();
-        if(bbdd.init()){
-            System.out.println("Conexión a la base de datos exitosa.");
-        } else {
-            System.out.println("Error al conectar con la base de datos.");
-        }
-    }
+	public static void main(String[] args) {
+		BBDD bbdd = new BBDD();
+		Empleado e = new Empleado();
+		e.persist();
+		
+		Scanner entrada = new Scanner(System.in);
+		if(bbdd.init()){
+		System.out.println("Conexión a la base de datos exitosa.");
+		boolean salir = false;
+		do {
+			boolean correcto = false;
+			int gestion = 0;
+			do {
+				System.out.println(
+						"Que quieres gestionar (introduce el numero): \n1.Empleados\n2.Reservas\n3.Hotel\n4.Salir");
+				if (entrada.hasNextInt()) {
+					gestion = entrada.nextInt();
+
+					if (gestion == 4) { 
+						correcto = true;
+						salir = true;
+					} else if (gestion >= 1 && gestion <= 3) {
+						correcto = true;
+					} else {
+						System.out.println("Este número no está en la lista.");
+					}
+				} else {
+					System.out.println("Número incorrecto.");
+					entrada.next();
+				}
+			} while (!correcto);
+
+			if (!salir) {
+
+				 switch (gestion) {
+                 case 1:
+                     // Gestión de Empleados
+                     boolean correctoEmpleado = false;
+                     int gestionEmpleado = 0;
+                     do {
+                         System.out.println("Menú de gestión de Empleados (introduce el número): \n1. Introducir empleado\n2. Editar empleado\n3. Eliminar empleado\n4. Ver empleado");
+                         if (entrada.hasNextInt()) {
+                             gestionEmpleado = entrada.nextInt();
+                             if (gestionEmpleado >= 1 && gestionEmpleado <= 4) {
+                                 correctoEmpleado = true;
+                             } else {
+                                 System.out.println("Número no válido para la gestión de empleados.");
+                             }
+                         } else {
+                             System.out.println("Entrada no válida, introduce un número.");
+                             entrada.next();
+                         }
+                     } while (!correctoEmpleado);
+
+                     switch (gestionEmpleado) {
+                         case 1:
+                             System.out.println("Has seleccionado: Introducir empleado.");
+                             
+                             break;
+                         case 2:
+                             System.out.println("Has seleccionado: Editar empleado.");
+                             // Aquí iría la lógica para editar empleado.
+                             break;
+                         case 3:
+                             System.out.println("Has seleccionado: Eliminar empleado.");
+                             // Aquí iría la lógica para eliminar empleado.
+                             break;
+                         case 4:
+                             System.out.println("Has seleccionado: Ver empleado.");
+                             // Aquí iría la lógica para ver empleado.
+                             break;
+                     }
+                     break;
+
+                 case 2:
+                     // Gestión de Reservas
+                     boolean correctoReserva = false;
+                     int gestionReserva = 0;
+                     do {
+                         System.out.println("Menú de gestión de Reservas (introduce el número): \n1. Crear reserva\n2. Editar reserva\n3. Cancelar reserva\n4. Ver reserva");
+                         if (entrada.hasNextInt()) {
+                             gestionReserva = entrada.nextInt();
+                             if (gestionReserva >= 1 && gestionReserva <= 4) {
+                                 correctoReserva = true;
+                             } else {
+                                 System.out.println("Número no válido para la gestión de reservas.");
+                             }
+                         } else {
+                             System.out.println("Entrada no válida, introduce un número.");
+                             entrada.next();
+                         }
+                     } while (!correctoReserva);
+
+                     switch (gestionReserva) {
+                         case 1:
+                             System.out.println("Has seleccionado: Crear reserva.");
+                             // Lógica para crear una reserva.
+                             break;
+                         case 2:
+                             System.out.println("Has seleccionado: Editar reserva.");
+                             // Lógica para editar una reserva.
+                             break;
+                         case 3:
+                             System.out.println("Has seleccionado: Cancelar reserva.");
+                             // Lógica para cancelar una reserva.
+                             break;
+                         case 4:
+                             System.out.println("Has seleccionado: Ver reserva.");
+                             // Lógica para ver una reserva.
+                             break;
+                     }
+                     break;
+
+                 case 3:
+                     // Gestión de Hotel
+                     boolean correctoHotel = false;
+                     int gestionHotel = 0;
+                     do {
+                         System.out.println("Menú de gestión de Hotel (introduce el número): \n1. Añadir hotel\n2. Editar hotel\n3. Eliminar hotel\n4. Ver hotel");
+                         if (entrada.hasNextInt()) {
+                             gestionHotel = entrada.nextInt();
+                             if (gestionHotel >= 1 && gestionHotel <= 4) {
+                                 correctoHotel = true;
+                             } else {
+                                 System.out.println("Número no válido para la gestión del hotel.");
+                             }
+                         } else {
+                             System.out.println("Entrada no válida, introduce un número.");
+                             entrada.next();
+                         }
+                     } while (!correctoHotel);
+
+                     switch (gestionHotel) {
+                         case 1:
+                             System.out.println("Has seleccionado: Añadir hotel.");
+                             // Lógica para añadir un hotel.
+                             break;
+                         case 2:
+                             System.out.println("Has seleccionado: Editar hotel.");
+                             // Lógica para editar un hotel.
+                             break;
+                         case 3:
+                             System.out.println("Has seleccionado: Eliminar hotel.");
+                             // Lógica para eliminar un hotel.
+                             break;
+                         case 4:
+                             System.out.println("Has seleccionado: Ver hotel.");
+                             // Lógica para ver la información de un hotel.
+                             break;
+                     }
+                     break;
+             }
+         }
+		} while (!salir);
+		 } else {
+		System.out.println("Error al conectar con la base de datos.");
+		 }
+	}
 }

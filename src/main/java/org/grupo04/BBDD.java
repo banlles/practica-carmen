@@ -124,7 +124,7 @@ public class BBDD {
 		}
 	}
 
-	public static boolean Merge(Empleado usuarioEditar) {
+	public static boolean merge(Empleado usuarioEditar) {
 		try {
 			BBDD.updateEmpleados.setString(1, usuarioEditar.getNombre());
 			BBDD.updateEmpleados.setString(2, usuarioEditar.getPuesto());
@@ -138,7 +138,7 @@ public class BBDD {
 		}
 	}
 
-	public static boolean Remove(Empleado usuarioEliminar) {
+	public static boolean remove(Empleado usuarioEliminar) {
 		try {
 			BBDD.deleteEmpleados.setString(1, usuarioEliminar.getNombre());
 			BBDD.deleteEmpleados.executeUpdate();
@@ -172,7 +172,7 @@ public class BBDD {
         return lista.toArray(new Reserva[lista.size()]);
 	}
 
-	public static boolean Persist(Reserva usuarioInsertar) {
+	public static boolean persist(Reserva usuarioInsertar) {
 		try {
 			BBDD.insertReservas.setString(1, usuarioInsertar.getNombreHuesped());
 			BBDD.insertReservas.setString(2, usuarioInsertar.getFechaEntrada());
@@ -187,7 +187,7 @@ public class BBDD {
 		}
 	}
 
-	public static boolean Merge(Reserva usuarioEditar) {
+	public static boolean merge(Reserva usuarioEditar) {
 		try {
 			BBDD.updateReservas.setString(1, usuarioEditar.getNombreHuesped());
 			BBDD.updateReservas.setString(2, usuarioEditar.getFechaEntrada());
@@ -202,7 +202,7 @@ public class BBDD {
 		}
 	}
 
-	public static boolean Remove(Reserva usuarioEliminar) {
+	public static boolean remove(Reserva usuarioEliminar) {
 		try {
 			BBDD.deleteReservas.setString(1, usuarioEliminar.getNombreHuesped());
 			BBDD.deleteReservas.executeUpdate();
@@ -234,7 +234,7 @@ public class BBDD {
         return lista.toArray(new Hotel[lista.size()]);
 	}
 
-	public static boolean Persist(Hotel usuarioInsertar) {
+	public static boolean persist(Hotel usuarioInsertar) {
 		try {
 			BBDD.insertHotel.setInt(1, usuarioInsertar.getHabitaciones());
 			BBDD.insertHotel.setString(2, usuarioInsertar.getName());
@@ -247,7 +247,7 @@ public class BBDD {
 		}
 	}
 
-	public static boolean Merge(Hotel usuarioEditar) {
+	public static boolean merge(Hotel usuarioEditar) {
 		try {
 			BBDD.updateHotel.setInt(1, usuarioEditar.getHabitaciones());
 			BBDD.updateHotel.setString(2, usuarioEditar.getName());
@@ -261,7 +261,7 @@ public class BBDD {
 		}
 	}
 
-	public static boolean Remove(Hotel usuarioEliminar) {
+	public static boolean remove(Hotel usuarioEliminar) {
 		try {
 			BBDD.deleteHotel.setString(1, usuarioEliminar.getName());
 			BBDD.deleteHotel.executeUpdate();
