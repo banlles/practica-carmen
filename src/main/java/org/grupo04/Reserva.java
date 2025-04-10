@@ -69,7 +69,7 @@ public class Reserva {
     	return BBDD.persist(this);
     }
     
-    public boolean Merge () {
+    public boolean merge () {
     	return BBDD.merge(this);
     }
     

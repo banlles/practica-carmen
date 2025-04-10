@@ -48,6 +48,22 @@ public class Empleado {
         this.salario = salario;
     }
     
+    public Empleado[] find() {
+    	return BBDD.find(this);
+    }
+    
+    public boolean persist() {
+    	return BBDD.Persist(this);
+    }
+    
+    public boolean merge () {
+    	return BBDD.merge(this);
+    }
+    
+    public boolean remove () {
+    	return BBDD.remove(this);
+    }
+    
 	@Override
 	public String toString() {
 		return "Empleado [empleadoId=" + empleadoId + ", nombre=" + nombre + ", puesto=" + puesto + ", salario="
