@@ -13,7 +13,6 @@ import java.io.IOException;
 
 public class BBDD {
 	private Connection conn;
-
 	public static PreparedStatement selectEmpleados;
 	public static PreparedStatement selectEmpleadosBase;
 	public static PreparedStatement insertEmpleados;
@@ -46,7 +45,7 @@ public class BBDD {
 			selectEmpleadosBase = conn.prepareStatement("SELECT * FROM empleados");
 			insertEmpleados = conn.prepareStatement("INSERT INTO empleados (nombre, puesto, salario) VALUES (?, ?, ?)");
 			updateEmpleados = conn.prepareStatement("UPDATE empleados SET nombre = ?, puesto = ?, salario = ? WHERE empleado_id = ?");
-			deleteEmpleados = conn.prepareStatement("DELETE FROM empleados WHERE nombre = ?");
+			deleteEmpleados = conn.prepareStatement("DELETE FROM empleados WHERE empleado_id = ?");
 
 			selectReservas = conn.prepareStatement("SELECT reserva_id, nombre_huesped, fecha_entrada, fecha_salida, numero_habitacion FROM reservas WHERE reserva_id = ?");
 			selectReservasBase = conn.prepareStatement("SELECT * FROM reservas");
@@ -165,7 +164,7 @@ public class BBDD {
 
 	public static boolean remove(Empleado usuarioEliminar) {
 		try {
-			BBDD.deleteEmpleados.setString(1, usuarioEliminar.getNombre());
+			BBDD.deleteEmpleados.setInt(1, usuarioEliminar.getEmpleadoId());
 			BBDD.deleteEmpleados.executeUpdate();
 			return true;
 		} catch (SQLException e) {

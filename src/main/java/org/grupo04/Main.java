@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		BBDD bbdd = new BBDD();
 		
@@ -263,5 +262,8 @@ public class Main {
 		 } else {
 		System.out.println("Error al conectar con la base de datos.");
 		 }
+
+
 	}
+
 }
