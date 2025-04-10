@@ -136,7 +136,7 @@ public class BBDD {
         return lista;
 	}
 
-	public static boolean Persist(Empleado usuarioInsertar) {
+	public static boolean persist(Empleado usuarioInsertar) {
 		try {
 			BBDD.insertEmpleados.setString(1, usuarioInsertar.getNombre());
 			BBDD.insertEmpleados.setString(2, usuarioInsertar.getPuesto());

@@ -55,7 +55,7 @@ public class Empleado {
     }
     
     public boolean persist() {
-    	return BBDD.Persist(this);
+    	return BBDD.persist(this);
     }
     
     public boolean merge () {
