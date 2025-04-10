@@ -1,12 +1,12 @@
 package org.grupo04;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		BBDD bbdd = new BBDD();
-		Empleado e = new Empleado();
-		e.persist();
 		
 		Scanner entrada = new Scanner(System.in);
 		if(bbdd.init()){
@@ -60,15 +60,46 @@ public class Main {
                      switch (gestionEmpleado) {
                          case 1:
                              System.out.println("Has seleccionado: Introducir empleado.");
-                             
+                             System.out.println("Introduce el nombre:");
+                             String nombre = entrada.next();
+                             System.out.println("Introduce el puesto:");
+                             String puesto = entrada.next();
+                             System.out.println("Introduce el salario:");
+                             double salario = entrada.nextDouble();
+                             Empleado empleado = new Empleado(-1, nombre, puesto, salario);
+                     		 empleado.persist();
                              break;
                          case 2:
                              System.out.println("Has seleccionado: Editar empleado.");
-                             // Aquí iría la lógica para editar empleado.
+                     		ArrayList<Empleado> lista2 = new ArrayList<Empleado>();
+                             lista2 = BBDD.selectEmpleado();
+                             for (int x = 0; x < lista2.size(); x++) {
+                            	System.out.println(lista2.get(x).toString());
+                             }
+                             System.out.println("Introduce la id del empleado que quieres editar");
+                             int id2 = entrada.nextInt();
+                             System.out.println("Introduce el nombre:");
+                             String nombre2 = entrada.next();
+                             System.out.println("Introduce el puesto:");
+                             String puesto2 = entrada.next();
+                             System.out.println("Introduce el salario:");
+                             double salario2 = entrada.nextDouble();
+                             Empleado empleado2 = new Empleado(id2, nombre2, puesto2, salario2);
+                     		 empleado2.merge();
                              break;
                          case 3:
                              System.out.println("Has seleccionado: Eliminar empleado.");
-                             // Aquí iría la lógica para eliminar empleado.
+                             ArrayList<Empleado> lista3 = new ArrayList<Empleado>();
+                             lista3 = BBDD.selectEmpleado();
+                             for (int x = 0; x < lista3.size(); x++) {
+                            	System.out.println(lista3.get(x).toString());
+                             }
+                             System.out.println("Introduce la id del empleado que quieres Elimnar");
+                             int id3 = entrada.nextInt();
+                             Empleado empleado3 = new Empleado(id3, null, null, -1);
+                             empleado3.remove();
+
+                             
                              break;
                          case 4:
                              System.out.println("Has seleccionado: Ver empleado.");
