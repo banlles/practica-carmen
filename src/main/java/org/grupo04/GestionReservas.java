@@ -43,42 +43,5 @@ public class GestionReservas {
     /**
      * Cambiar la fecha de entrada de una reserva
      */
-    public boolean cambiarFechaEntrada(int posicion, String nuevaFechaEntrada) {
-        Reserva reserva = get(posicion);
-        if (reserva == null) {
-            return false;
-        }
-        reserva.setFechaEntrada(nuevaFechaEntrada);
-        return true;
-    }
-
-    /**
-     * Cambiar la fecha de salida de una reserva
-     */
-    public boolean cambiarFechaSalida(int posicion, String nuevaFechaSalida) {
-        Reserva reserva = get(posicion);
-        if (reserva == null) {
-            return false;
-        }
-        reserva.setFechaSalida(nuevaFechaSalida);
-        return true;
-    }
-
-    /**
-     * Obtener el número de habitación de una reserva
-     */
-    public int getNumeroHabitacion(int posicion) {
-        Reserva reserva = get(posicion);
-        if (reserva == null) {
-            return -1;
-        }
-        return reserva.getNumeroHabitacion();
-    }
-
-    /**
-     * Listar todas las reservas
-     */
-    public ArrayList<Reserva> listarTodas() {
-        return reservas;
-    }
+    //null
 }
