@@ -7,7 +7,7 @@ public class Main {
 	public static void main(String[] args) {
 		BBDD bbdd = new BBDD();
 		
-		Scanner entrada = new Scanner(System.in);
+		Scanner entrada = new Scanner(System.in); //prueba prueba
 		if(bbdd.init()){
 		System.out.println("Conexión a la base de datos exitosa.");
 		boolean salir = false;
