@@ -94,7 +94,84 @@ public class BBDD {
 		return p;
 	}
 
+	public static ArrayList<Empleado> find(Empleado filtroBusqueda) {
+		ArrayList<Empleado> lista = new ArrayList<Empleado>();
+		try {
+			BBDD.selectEmpleados.setInt(1, filtroBusqueda.getEmpleadoId());
+			ResultSet rs = BBDD.selectEmpleados.executeQuery();
 
+			while (rs.next()) {
+				Empleado empleado = new Empleado();
+				empleado.setEmpleadoId(rs.getInt("empleado_id"));
+				empleado.setNombre(rs.getString("nombre"));
+				empleado.setPuesto(rs.getString("puesto"));
+				empleado.setSalario(rs.getDouble("salario"));
+				lista.add(empleado);
+			}
+		} catch (SQLException e) {
+			BBDD.showError(e);
+		}
+		//return (Empleado[]) lista.toArray();
+		return lista;
+
+	}
+
+	public static ArrayList<Empleado> selectEmpleado() {
+		ArrayList<Empleado> lista = new ArrayList<Empleado>();
+		try {
+			ResultSet rs = BBDD.selectEmpleadosBase.executeQuery();
+
+			while (rs.next()) {
+				Empleado empleado = new Empleado();
+				empleado.setEmpleadoId(rs.getInt("empleado_id"));
+				empleado.setNombre(rs.getString("nombre"));
+				empleado.setPuesto(rs.getString("puesto"));
+				empleado.setSalario(rs.getDouble("salario"));
+				lista.add(empleado);
+			}
+		} catch (SQLException e) {
+			BBDD.showError(e);
+		}
+		return lista;
+	}
+
+	public static boolean persist(Empleado usuarioInsertar) {
+		try {
+			BBDD.insertEmpleados.setString(1, usuarioInsertar.getNombre());
+			BBDD.insertEmpleados.setString(2, usuarioInsertar.getPuesto());
+			BBDD.insertEmpleados.setDouble(3, usuarioInsertar.getSalario());
+			BBDD.insertEmpleados.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			BBDD.showError(e);
+			return false;
+		}
+	}
+
+	public static boolean merge(Empleado usuarioEditar) {
+		try {
+			BBDD.updateEmpleados.setString(1, usuarioEditar.getNombre());
+			BBDD.updateEmpleados.setString(2, usuarioEditar.getPuesto());
+			BBDD.updateEmpleados.setDouble(3, usuarioEditar.getSalario());
+			BBDD.updateEmpleados.setDouble(4, usuarioEditar.getEmpleadoId());
+			BBDD.updateEmpleados.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			BBDD.showError(e);
+			return false;
+		}
+	}
+
+	public static boolean remove(Empleado usuarioEliminar) {
+		try {
+			BBDD.deleteEmpleados.setInt(1, usuarioEliminar.getEmpleadoId());
+			BBDD.deleteEmpleados.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			BBDD.showError(e);
+			return false;
+		}
+	}
 
 	public static ArrayList<Reserva> find(Reserva filtroBusqueda) {
 		ArrayList<Reserva> lista = new ArrayList<Reserva>();
