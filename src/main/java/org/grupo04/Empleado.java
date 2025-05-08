@@ -31,8 +31,12 @@ public class Empleado {
     }
 
     public void setNombre(String nombre) {
+        if (nombre.matches(".*\\d.*")) {
+            throw new IllegalArgumentException("El nombre no puede tener números");
+        }
         this.nombre = nombre;
     }
+
 
     public String getPuesto() {
         return puesto;
