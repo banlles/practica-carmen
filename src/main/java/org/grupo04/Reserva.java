@@ -35,8 +35,12 @@ public class Reserva {
     }
 
     public void setNombreHuesped(String nombreHuesped) {
+        if (nombreHuesped.matches(".*\\d.*")) {
+            throw new IllegalArgumentException("El nombre del huésped no puede tner numeros");
+        }
         this.nombreHuesped = nombreHuesped;
     }
+
 
     public String getFechaEntrada() {
         return fechaEntrada;
