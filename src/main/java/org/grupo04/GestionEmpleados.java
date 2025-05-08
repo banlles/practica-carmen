@@ -10,7 +10,9 @@ public class GestionEmpleados {
     }
 
     /**
-     * Da la info del empleadpo en la posiscion indicadda
+     *  Para dar la info de un Empleado  en concreto
+     * @param posicion La posición de la que se devolvera la información
+     * @return Devolvera la información del empleado
      */
     public Empleado get(int posicion) {
         if (posicion < 0 || posicion >= empleados.size()) {

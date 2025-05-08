@@ -27,6 +27,10 @@ public class Hotel {
 
     public String getName() { return name; }
 
+    /**
+     * Este server sirve para añadir el nombre del Hotel y se compreba que el nombre no contenga ningún caracter que no sean Letras
+     * @param name El nombre que se le asignara al Hotel
+     */
     public void setName(String name) {
         if (name.matches(".*\\d.*")) {
             throw new IllegalArgumentException("El nombre no puede contener números");

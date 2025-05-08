@@ -94,6 +94,11 @@ public class BBDD {
 		return p;
 	}
 
+	/**
+	 * Devuelve todos los empleados que hay creados en la base de datos siguiedo ciertos filtros
+	 * @param filtroBusqueda Los filtros que se aplicaran en la busqueda
+	 * @return Los empleados filtrados por el filtro de busqueda
+	 */
 	public static ArrayList<Empleado> find(Empleado filtroBusqueda) {
 		ArrayList<Empleado> lista = new ArrayList<Empleado>();
 		try {

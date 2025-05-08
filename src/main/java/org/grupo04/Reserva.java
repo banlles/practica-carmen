@@ -34,6 +34,10 @@ public class Reserva {
         return nombreHuesped;
     }
 
+    /**
+     * Este server sirve para añadir el nombre al husped que ha hecho la reserva y se compreba que el nombre no contenga ningún caracter que no sean Letras
+     * @param nombreHuesped El nombre que se le añadira al Husped
+     */
     public void setNombreHuesped(String nombreHuesped) {
         if (nombreHuesped.matches(".*\\d.*")) {
             throw new IllegalArgumentException("El nombre del huésped no puede tner numeros");

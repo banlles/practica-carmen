@@ -11,6 +11,7 @@ public class Main {
 		if(bbdd.init()){
 		System.out.println("Conexión a la base de datos exitosa.");
 		boolean salir = false;
+
 		do {
 			boolean correcto = false;
 			int gestion = 0;

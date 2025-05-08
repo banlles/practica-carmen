@@ -30,6 +30,11 @@ public class Empleado {
         return nombre;
     }
 
+    /**
+     * Este server sirve para añadir el nombre al Empleado y se compreba que el nombre no contenga ningún caracter que no sean Letras
+     * @param nombre El nombre que se le asignara al Empleado
+     *
+     */
     public void setNombre(String nombre) {
         if (nombre.matches(".*\\d.*")) {
             throw new IllegalArgumentException("El nombre no puede tener números");

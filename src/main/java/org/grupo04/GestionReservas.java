@@ -10,7 +10,9 @@ public class GestionReservas {
     }
 
     /**
-     * Da la info de la reserva en la posicion indicadda
+     * Para dar la info de una reserva en concreto
+     * @param posicion La posición de la que se devolvera la información
+     * @return Devolvera la información de la reserva
      */
     public Reserva get(int posicion) {
         if (posicion < 0 || posicion >= reservas.size()) {

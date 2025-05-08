@@ -10,7 +10,9 @@ public class GestionHotel {
     }
 
     /**
-     * Da la info del hotel en la posición indicada
+     * Para dar la info de un Hotel  en concreto
+     * @param posicion La posición de la que se devolvera la información
+     * @return Devolvera la información del hotel
      */
     public Hotel get(int posicion) {
         if (posicion < 0 || posicion >= hoteles.size()) {
