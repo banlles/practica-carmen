@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://www.pom.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="
+           http://maven.apache.org/POM/4.0.0
+           https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>es.eug.campus</groupId>
@@ -13,8 +15,9 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <dependencies>
-        <!-- JUnit Jupiter API para tests -->
+        <!-- JUnit Jupiter para tests -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -27,16 +30,12 @@
             <version>5.12.1</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Conector MySQL -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>RELEASE</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -53,7 +52,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Surefire Plugin para ejecutar tests -->
+            <!-- Surefire Plugin para tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -63,28 +62,28 @@
                 </configuration>
             </plugin>
 
-            <!-- JAR Plugin (opcional) -->
+            <!-- JAR Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.4.2</version>
             </plugin>
 
-            <!-- Install Plugin (no suele requerir configuración especial) -->
+            <!-- Install Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
                 <version>3.1.4</version>
             </plugin>
 
-            <!-- Deploy Plugin (no suele requerir configuración especial) -->
+            <!-- Deploy Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
                 <version>3.1.4</version>
             </plugin>
 
-            <!-- Shade Plugin para empaquetar en un \"uber-jar\" con main class -->
+            <!-- Shade Plugin para uber-jar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -106,19 +105,21 @@
                 </executions>
             </plugin>
 
+            <!-- Site Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
                 <version>4.0.0-M16</version>
             </plugin>
 
+            <!-- Javadoc Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.11.2</version>
             </plugin>
 
-            <!--https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
+            <!-- Jacoco Plugin -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -130,7 +131,7 @@
                     </execution>
                     <execution>
                         <id>default-report</id>
-                        <goals><goal>report</goal> </goals>
+                        <goals><goal>report</goal></goals>
                     </execution>
                     <execution>
                         <id>default-check</id>
@@ -153,49 +154,52 @@
                 </executions>
             </plugin>
 
+            <!-- PMD Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>3.26.0</version>
             </plugin>
 
+            <!-- SpotBugs Plugin -->
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
                 <version>4.9.3.0</version>
             </plugin>
 
+            <!-- Checkstyle Plugin -->
             <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-            <version>3.6.0</version>
-        </plugin>
-
-    </plugins>
+                <version>3.6.0</version>
+            </plugin>
+        </plugins>
     </build>
 
     <reporting>
         <plugins>
+            <!-- Javadoc Reports -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.11.2</version>
             </plugin>
+
+            <!-- Jacoco Reports -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.13</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
         </plugins>
-
-        <plugin>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <reportSets>
-                <reportSet>
-                    <reports>
-                        <report>report</report>
-                    </reports>
-                </reportSet>
-            </reportSets>
-        </plugin>
-
-
     </reporting>
 
 </project>
