@@ -37,7 +37,6 @@ public class Empleado {
         this.nombre = nombre;
     }
 
-
     public String getPuesto() {
         return puesto;
     }

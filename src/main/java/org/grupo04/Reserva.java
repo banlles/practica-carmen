@@ -41,7 +41,6 @@ public class Reserva {
         this.nombreHuesped = nombreHuesped;
     }
 
-
     public String getFechaEntrada() {
         return fechaEntrada;
     }

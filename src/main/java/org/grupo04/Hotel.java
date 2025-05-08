@@ -25,11 +25,12 @@ public class Hotel {
         this.habitaciones = habitaciones;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
     public void setName(String name) {
+        if (name.matches(".*\\d.*")) {
+            throw new IllegalArgumentException("El nombre no puede contener números");
+        }
         this.name = name;
     }
 
