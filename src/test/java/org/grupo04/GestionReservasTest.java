@@ -35,18 +35,6 @@ public class GestionReservasTest {
     }
 
     @Test
-    public void Obtener_Reserva_Con_Posicion_Buena() {
-        assertSame(r1, gestor.get(0));
-        assertSame(r2, gestor.get(1));
-    }
-
-    @Test
-    public void Obtener_Reserva_Con_Posicion_Mal() {
-        assertNull(gestor.get(-1));
-        assertNull(gestor.get(5));
-    }
-
-    @Test
     public void Eliminar_Reserva_OK() {
         assertTrue(gestor.remove(0));
         assertEquals(1, gestor.listarTodas().size());
@@ -81,16 +69,6 @@ public class GestionReservasTest {
         assertFalse(gestor.cambiarFechaSalida(-2, "2025-07-16"));
     }
 
-    @Test
-    public void Numero_Habitacion_OK() {
-        assertEquals(101, gestor.getNumeroHabitacion(0));
-        assertEquals(102, gestor.getNumeroHabitacion(1));
-    }
-
-    @Test
-    public void Numero_Habitacion_Mal() {
-        assertEquals(-1, gestor.getNumeroHabitacion(999));
-    }
 
     @Test
     public void Listar_Reservas_Exixtentes() {

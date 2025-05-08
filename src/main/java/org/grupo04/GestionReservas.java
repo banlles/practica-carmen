@@ -65,17 +65,6 @@ public class GestionReservas {
     }
 
     /**
-     * Obtener el número de habitación de una reserva
-     */
-    public int getNumeroHabitacion(int posicion) {
-        Reserva reserva = get(posicion);
-        if (reserva == null) {
-            return -1;
-        }
-        return reserva.getNumeroHabitacion();
-    }
-
-    /**
      * Listar todas las reservas
      */
     public ArrayList<Reserva> listarTodas() {
