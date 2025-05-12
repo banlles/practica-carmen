@@ -1,7 +1,7 @@
 package org.grupo04;
 
 import java.util.ArrayList;
-import java.util.Date;
+
 
 /**
  * Clase que representa una reserva de hotel.
