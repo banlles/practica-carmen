@@ -278,9 +278,11 @@ public class Main {
 				String hotelOriginal = entrada.next();
 				System.out.println("Introduce el nuevo número de habitaciones:");
 				int habitacionesEdit = entrada.nextInt();
+				System.out.println("Introduce el nuevo nombre del hotel:");
+				String nuevoNombre = entrada.next();
 				System.out.println("Introduce la nueva ubicación del hotel:");
 				String nuevaUbicacion = entrada.next();
-				Hotel hotelEditar = new Hotel(habitacionesEdit, hotelOriginal, nuevaUbicacion);
+				Hotel hotelEditar = new Hotel(habitacionesEdit, nuevoNombre, nuevaUbicacion);
 				hotelEditar.merge();
 				break;
 			case 3:
