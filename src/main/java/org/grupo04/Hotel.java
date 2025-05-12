@@ -51,7 +51,11 @@ public class Hotel {
         return habitaciones;
     }
 
-
+    /**
+     * Establece el número de habitaciones del hotel.
+     *
+     * @param habitaciones Nuevo número de habitaciones.
+     */
     public void setHabitaciones(int habitaciones) {
         this.habitaciones = habitaciones;
     }
