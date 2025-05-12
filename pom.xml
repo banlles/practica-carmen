@@ -104,22 +104,22 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <!-- Site Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>4.0.0-M16</version>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.2</version>
             </plugin>
 
-            <!-- Javadoc Plugin -->
+            <!-- plugin para generar el java doc -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.11.2</version>
             </plugin>
 
-            <!-- Jacoco Plugin -->
+            <!-- Plugin para ejecutar el JaCoCo (cobertura de los test del
+            proyecto) -->
+            <!--https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -127,15 +127,21 @@
                 <executions>
                     <execution>
                         <id>default-prepare-agent</id>
-                        <goals><goal>prepare-agent</goal></goals>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
                     </execution>
                     <execution>
                         <id>default-report</id>
-                        <goals><goal>report</goal></goals>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
                     </execution>
                     <execution>
                         <id>default-check</id>
-                        <goals><goal>check</goal></goals>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
                         <configuration>
                             <rules>
                                 <rule>
@@ -154,43 +160,30 @@
                 </executions>
             </plugin>
 
-            <!-- PMD Plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.26.0</version>
-            </plugin>
-
-            <!-- SpotBugs Plugin -->
-            <plugin>
-                <groupId>com.github.spotbugs</groupId>
-                <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>4.9.3.0</version>
-            </plugin>
-
-            <!-- Checkstyle Plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.6.0</version>
-            </plugin>
         </plugins>
     </build>
 
+
     <reporting>
+        <!-- plugin para el reporting de los tests -->
         <plugins>
-            <!-- Javadoc Reports -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>3.5.3</version>
+            </plugin>
+
+            <!-- plugin para generar el java doc -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.11.2</version>
             </plugin>
 
-            <!-- Jacoco Reports -->
+            <!-- plugin para el reporting de la cobertura de los test (JaCoco) en el Site :D -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.13</version>
                 <reportSets>
                     <reportSet>
                         <reports>
@@ -199,6 +192,26 @@
                     </reportSet>
                 </reportSets>
             </plugin>
+            <!-- PMD Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.26.0</version>
+            </plugin>
+            <!-- SpotBugs Plugin -->
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>4.9.3.0</version>
+            </plugin>
+            <!-- Checkstyle Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.6.0</version>
+            </plugin>
+
         </plugins>
     </reporting>
+
 </project>
