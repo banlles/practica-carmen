@@ -63,7 +63,12 @@ public class Reserva {
         return reservaId;
     }
 
-   
+   /** 
+   *establece el indentificador de la reserva
+   *
+   *@param reservaId  nueva Id de la reserva
+   */
+
     public void setReservaId(int reservaId) {
         this.reservaId = reservaId;
     }
