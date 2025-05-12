@@ -133,7 +133,7 @@ public class BBDD {
 	public static ArrayList<Empleado> find(Empleado filtroBusqueda) {
 		ArrayList<Empleado> lista = new ArrayList<>();
 		try {
-			BBDD.selectEmpleados.setInt(1, filtroBusqueda.getEmpleadoId());
+			selectEmpleados.setInt(1, filtroBusqueda.getEmpleadoId());
 			ResultSet rs = BBDD.selectEmpleados.executeQuery();
 
 			while (rs.next()) {
